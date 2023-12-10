@@ -48,6 +48,12 @@ export class CategoriesController {
   @ApiCreatedResponse({
     description: 'Successfully created',
   })
+  @ApiForbiddenResponse({
+    description: 'Forbidden',
+  })
+  @ApiNotFoundResponse({
+    description: 'Not found',
+  })
   @ApiBadRequestResponse({
     description: 'Bad request',
   })
