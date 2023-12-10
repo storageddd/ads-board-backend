@@ -30,8 +30,8 @@ export class AdvertisementsService {
   findAll(limit?: number, offset?: number): Promise<Partial<Advertisement>[]> {
     return this.prismaService.advertisement.findMany({
       select: advertisementDefaultSelect,
-      skip: offset,
-      take: limit,
+      skip: offset || undefined,
+      take: limit || undefined,
       orderBy: {
         id: 'desc',
       },
