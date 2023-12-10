@@ -13,8 +13,8 @@ import { categoryDefaultSelect } from './categories.constants';
 export class CategoriesService {
   constructor(private readonly prismaService: PrismaService) {}
 
-  create(createCategoryDto: CreateCategoryDto): Promise<Category> {
-    const category = this.prismaService.category.findUnique({
+  async create(createCategoryDto: CreateCategoryDto): Promise<Category> {
+    const category = await this.prismaService.category.findUnique({
       where: {
         title: createCategoryDto.title,
       },
