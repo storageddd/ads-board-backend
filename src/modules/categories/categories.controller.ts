@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
 import { UserRole } from '@prisma/client';
 import {
-  Controller,
   Req,
   Res,
   Get,
@@ -10,8 +9,9 @@ import {
   Patch,
   Param,
   Delete,
-  HttpStatus,
   UseGuards,
+  HttpStatus,
+  Controller,
 } from '@nestjs/common';
 import {
   ApiTags,
@@ -25,6 +25,7 @@ import {
   ApiCreatedResponse,
 } from '@nestjs/swagger';
 import { JwtAuthGuard } from '~/guards/jwt-auth.guard';
+import { RolesGuard } from '~/guards/roles.guard';
 import { Roles } from '~/decorators/roles.decorator';
 import { CategoryEntity } from './entities/category.entity';
 import { CategoriesService } from './categories.service';
@@ -37,7 +38,7 @@ export class CategoriesController {
   constructor(private readonly categoriesService: CategoriesService) {}
 
   @Post()
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(UserRole.MODERATOR)
   @ApiOperation({
     operationId: 'createCategory',
@@ -90,7 +91,7 @@ export class CategoriesController {
   }
 
   @Patch(':id')
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(UserRole.MODERATOR)
   @ApiOperation({
     operationId: 'updateCategory',
@@ -119,7 +120,7 @@ export class CategoriesController {
   }
 
   @Delete(':id')
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(UserRole.MODERATOR)
   @ApiOperation({
     operationId: 'deleteCategory',
