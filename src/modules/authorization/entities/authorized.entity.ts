@@ -3,7 +3,7 @@ import { type UserRole } from '@prisma/client';
 
 export class AuthorizedEntity {
   @ApiProperty()
-  readonly sub: number;
+  readonly id: number;
 
   @ApiProperty()
   readonly username: number;

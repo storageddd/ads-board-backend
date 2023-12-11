@@ -11,7 +11,7 @@ export type Pagination = {
 };
 
 export type UserJWT = {
-  sub: number;
+  id: number;
   username: string;
   role: UserRole;
 };

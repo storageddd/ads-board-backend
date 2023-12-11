@@ -5,7 +5,7 @@ export const canUpdateOrDeleteEntity = (
   entityUserId: number,
   user: UserJWT,
 ): boolean => {
-  const isCurrentUser = user.sub === entityUserId;
+  const isCurrentUser = user.id === entityUserId;
   const isModerator = user.role === UserRole.MODERATOR;
 
   return isCurrentUser || isModerator;

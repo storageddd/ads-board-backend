@@ -55,7 +55,7 @@ export class AdvertisementsController {
     @Res() res: Response,
     @Body() createAdvertisementDto: CreateAdvertisementDto,
   ) {
-    const userId = req.user.sub;
+    const userId = req.user.id;
     await this.advertisementsService.create(createAdvertisementDto, userId);
     return res.sendStatus(HttpStatus.CREATED);
   }
